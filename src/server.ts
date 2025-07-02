@@ -1,27 +1,28 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes';
-import emotionRoutes from './routes/emotionRoutes';
-import { authenticateToken } from './middlewares/authMiddleware';
+import dotenv from 'dotenv'
+import express from 'express'
 
-dotenv.config();
+import { authenticateToken } from './middlewares/authMiddleware'
+import authRoutes from './routes/authRoutes'
+import emotionRoutes from './routes/emotionRoutes'
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+dotenv.config()
 
-app.use(express.json());
+const app = express()
+const PORT = process.env.PORT || 3000
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Humora Backend is running!');
-});
+  res.send('Humora Backend is running!')
+})
 
-app.use('/auth', authRoutes);
-app.use('/emotions', emotionRoutes);
+app.use('/auth', authRoutes)
+app.use('/emotions', emotionRoutes)
 
 app.get('/protected', authenticateToken, (req, res) => {
-  res.json({ message: 'This is a protected route!', userId: (req as any).userId });
-});
+  res.json({ message: 'This is a protected route!', userId: (req as any).userId })
+})
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server running on port ${PORT}`)
+})

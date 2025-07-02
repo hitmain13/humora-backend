@@ -1,21 +1,22 @@
-import { Router } from 'express';
-import { authenticateToken } from '../middlewares/authMiddleware';
+import { Router } from 'express'
+
 import {
   createEmotionRecord,
   getEmotionRecords,
   getEmotionRecordById,
   updateEmotionRecord,
   deleteEmotionRecord,
-} from '../controllers/emotionController';
+} from '../controllers/emotionController'
+import { authenticateToken } from '../middlewares/authMiddleware'
 
-const router = Router();
+const router = Router()
 
-router.use(authenticateToken); // All routes below this will be protected
+router.use(authenticateToken) // All routes below this will be protected
 
-router.post('/', createEmotionRecord);
-router.get('/', getEmotionRecords);
-router.get('/:id', getEmotionRecordById);
-router.put('/:id', updateEmotionRecord);
-router.delete('/:id', deleteEmotionRecord);
+router.post('/', createEmotionRecord)
+router.get('/', getEmotionRecords)
+router.get('/:id', getEmotionRecordById)
+router.put('/:id', updateEmotionRecord)
+router.delete('/:id', deleteEmotionRecord)
 
-export default router;
+export default router

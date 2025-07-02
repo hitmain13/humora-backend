@@ -1,15 +1,28 @@
-import { Router } from 'express';
-import { register, login, forgotPassword, resetPassword, verifyEmail, logout } from '../controllers/authController';
-import { validate } from '../middlewares/validateRequest';
-import { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from '../schemas/authSchemas';
+import { Router } from 'express'
 
-const router = Router();
+import {
+  register,
+  login,
+  forgotPassword,
+  resetPassword,
+  verifyEmail,
+  logout,
+} from '../controllers/authController'
+import { validate } from '../middlewares/validateRequest'
+import {
+  registerSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
+} from '../schemas/authSchemas'
 
-router.post('/register', validate(registerSchema), register);
-router.post('/login', validate(loginSchema), login);
-router.post('/forgot-password', validate(forgotPasswordSchema), forgotPassword);
-router.post('/reset-password', validate(resetPasswordSchema), resetPassword);
-router.get('/verify/:token', verifyEmail);
-router.post('/logout', logout);
+const router = Router()
 
-export default router;
+router.post('/register', validate(registerSchema), register)
+router.post('/login', validate(loginSchema), login)
+router.post('/forgot-password', validate(forgotPasswordSchema), forgotPassword)
+router.post('/reset-password', validate(resetPasswordSchema), resetPassword)
+router.get('/verify/:token', verifyEmail)
+router.post('/logout', logout)
+
+export default router
