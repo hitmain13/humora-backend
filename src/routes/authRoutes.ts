@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import { register, login, forgotPassword, resetPassword, verifyEmail } from '../controllers/authController';
+import { validate } from '../middlewares/validateRequest';
+import { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from '../schemas/authSchemas';
 
 const router = Router();
 
-router.post('/register', register);
-router.post('/login', login);
-router.post('/forgot-password', forgotPassword);
-router.post('/reset-password', resetPassword);
+router.post('/register', validate(registerSchema), register);
+router.post('/login', validate(loginSchema), login);
+router.post('/forgot-password', validate(forgotPasswordSchema), forgotPassword);
+router.post('/reset-password', validate(resetPasswordSchema), resetPassword);
 router.get('/verify/:token', verifyEmail);
 
 export default router;
