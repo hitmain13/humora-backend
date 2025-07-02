@@ -53,3 +53,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
     res.status(400).json({ message: error.message || 'Invalid or expired verification token' });
   }
 };
+
+export const logout = (req: Request, res: Response) => {
+  res.status(200).json({ message: 'Logged out successfully' });
+};
